@@ -13,6 +13,7 @@ public class FileWorker {
     private static final String COLON = ":";
     private static final String COMMA = ",";
     private static final String EQUAL_SIGN = "=";
+    public static final String TYPE = "TYPE";
     private BufferedReader reader;
 
     public FileWorker() {
@@ -27,7 +28,7 @@ public class FileWorker {
 
         HashMap<String, Object> coupleMap = new HashMap<>();
         String[] typeAndCouples = beautify(line.split(COLON));
-        coupleMap.put("TYPE", typeAndCouples[0].toUpperCase());
+        coupleMap.put(TYPE, typeAndCouples[0].toUpperCase());
         String[] couples = beautify(typeAndCouples[1].split(COMMA));
 
         for (String couple : couples) {

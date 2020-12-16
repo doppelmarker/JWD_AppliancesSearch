@@ -19,7 +19,7 @@ public class ApplianceDAOImpl implements ApplianceDAO {
         FileWorker fileWorker = new FileWorker();
         List<HashMap<String, Object>> categoryMapList = fileWorker.extractInfo(criteria);
         for (HashMap<String, Object> categoryMap : categoryMapList) {
-            applianceList.add(ApplianceFactory.createAppliance(ApplianceType.valueOf((String) categoryMap.get("TYPE")), categoryMap));
+            applianceList.add(ApplianceFactory.createAppliance(ApplianceType.valueOf((String) categoryMap.get(FileWorker.TYPE)), categoryMap));
         }
         return applianceList;
     }
