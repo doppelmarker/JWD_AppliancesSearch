@@ -1,12 +1,11 @@
 package com.markedline.task01.service;
 
-import com.markedline.task01.entity.Appliance;
+import com.markedline.task01.entity.base.Appliance;
 import com.markedline.task01.entity.criteria.Criteria;
+
+import java.util.List;
 
 public interface ApplianceService {	
 	
-	Appliance find(Criteria criteria);
-
-
-	void add(Appliance appliance);
+	List<Appliance> find(Criteria criteria);
 }

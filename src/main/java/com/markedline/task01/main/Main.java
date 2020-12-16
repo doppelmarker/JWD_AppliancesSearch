@@ -1,56 +1,62 @@
 package com.markedline.task01.main;
 
-import static com.markedline.task01.entity.criteria.SearchCriteria.*;
-
-import com.markedline.task01.entity.Appliance;
 import com.markedline.task01.entity.Oven;
+import com.markedline.task01.entity.base.Appliance;
 import com.markedline.task01.entity.criteria.Criteria;
-import com.markedline.task01.entity.criteria.SearchCriteria;
+import com.markedline.task01.entity.criteria.CriteriaList;
 import com.markedline.task01.service.ApplianceService;
 import com.markedline.task01.service.ServiceFactory;
 
+import java.util.List;
+
+import static com.markedline.task01.entity.criteria.CriteriaList.TabletPC;
+
 public class Main {
 
-	public static void main(String[] args) {
-		Appliance appliance;
+    public static void main(String[] args) {
+        List<Appliance> applianceList;
+        ServiceFactory factory = ServiceFactory.getInstance();
+        ApplianceService service = factory.getApplianceService();
 
-		ServiceFactory factory = ServiceFactory.getInstance();
-		ApplianceService service = factory.getApplianceService();
+        //////////////////////////////////////////////////////////////////
 
-		//////////////////////////////////////////////////////////////////
+        Criteria criteriaOven = new Criteria(Oven.class.getSimpleName());
+        criteriaOven.add(CriteriaList.Oven.CAPACITY.toString(), 32);
 
-		service.add(new Oven(1000., 1000, 10., 32., 60., 45.5, 59.5));
-		service.add(new Oven(2000., 1500, 12., 33., 60., 45., 68.));
-		service.add(new Oven(3000., 2000, 11., 33., 60., 40., 70.));
+        applianceList = service.find(criteriaOven);
 
-		Criteria criteriaOven = new Criteria(Oven.class.getSimpleName());//"Oven"
-		criteriaOven.add(SearchCriteria.Oven.CAPACITY.toString(), 32.);
+        PrintApplianceInfo.print(applianceList);
 
-		appliance = service.find(criteriaOven);
+        //////////////////////////////////////////////////////////////////
 
-		PrintApplianceInfo.print(appliance);
+        //criteriaOven = new Criteria(Oven.class.getSimpleName());
+        criteriaOven.add(CriteriaList.Oven.HEIGHT.toString(), 40);
+        criteriaOven.add(CriteriaList.Oven.DEPTH.toString(), 60);
 
-		//////////////////////////////////////////////////////////////////
+        applianceList = service.find(criteriaOven);
+
+        PrintApplianceInfo.print(applianceList);
+
+        //////////////////////////////////////////////////////////////////
 
 		criteriaOven = new Criteria(Oven.class.getSimpleName());
-		criteriaOven.add(SearchCriteria.Oven.HEIGHT.toString(), 200);
-		criteriaOven.add(SearchCriteria.Oven.DEPTH.toString(), 300);
+		criteriaOven.add(CriteriaList.Oven.HEIGHT.toString(), 40);
+		criteriaOven.add(CriteriaList.Oven.DEPTH.toString(), 60);
 
-		appliance = service.find(criteriaOven);
+		applianceList = service.find(criteriaOven);
 
-		PrintApplianceInfo.print(appliance);
+		PrintApplianceInfo.print(applianceList);
 
 		//////////////////////////////////////////////////////////////////
-		
-		Criteria criteriaTabletPC = new Criteria(TabletPC.class.getSimpleName());
-		criteriaTabletPC.add(SearchCriteria.TabletPC.COLOR.toString(), "BLUE");
-		criteriaTabletPC.add(SearchCriteria.TabletPC.DISPLAY_INCHES.toString(), 14);
-		criteriaTabletPC.add(SearchCriteria.TabletPC.MEMORY_ROM.toString(), 4);
 
-		appliance = service.find(criteriaOven);// find(Object...obj)
+        Criteria criteriaTabletPC = new Criteria(TabletPC.class.getSimpleName());
+        criteriaTabletPC.add(CriteriaList.TabletPC.COLOR.toString(), "blue");
+        criteriaTabletPC.add(CriteriaList.TabletPC.DISPLAY_INCHES.toString(), 14);
+        criteriaTabletPC.add(CriteriaList.TabletPC.MEMORY_ROM.toString(), 8000);
 
-		PrintApplianceInfo.print(appliance);
+        applianceList = service.find(criteriaTabletPC);
 
-	}
+        PrintApplianceInfo.print(applianceList);
+    }
 
 }

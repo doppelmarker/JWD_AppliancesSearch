@@ -1,11 +1,13 @@
 package com.markedline.task01.entity;
 
+import com.markedline.task01.entity.base.Appliance;
+
 import java.util.Objects;
 
 public class Oven extends Appliance {
     private Integer powerConsumption;
     private Double weight;
-    private Double capacity;
+    private Integer capacity;
     private Double depth;
     private Double height;
     private Double width;
@@ -13,8 +15,7 @@ public class Oven extends Appliance {
     public Oven() {
     }
 
-    public Oven(Double price, Integer powerConsumption, Double weight, Double capacity, Double depth, Double height, Double width) {
-        super(price);
+    public Oven(Integer powerConsumption, Double weight, Integer capacity, Double depth, Double height, Double width) {
         this.powerConsumption = powerConsumption;
         this.weight = weight;
         this.capacity = capacity;
@@ -44,8 +45,7 @@ public class Oven extends Appliance {
     @Override
     public String toString() {
         return "Oven{" +
-                "price=" + price +
-                ", powerConsumption=" + powerConsumption +
+                "powerConsumption=" + powerConsumption +
                 ", weight=" + weight +
                 ", capacity=" + capacity +
                 ", depth=" + depth +
