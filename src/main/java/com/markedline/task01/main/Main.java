@@ -6,6 +6,7 @@ import com.markedline.task01.entity.criteria.Criteria;
 import com.markedline.task01.entity.criteria.CriteriaList;
 import com.markedline.task01.service.ApplianceService;
 import com.markedline.task01.service.ServiceFactory;
+import com.markedline.task01.util.AppliancePrinter;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class Main {
         List<Appliance> applianceList;
         ServiceFactory factory = ServiceFactory.getInstance();
         ApplianceService service = factory.getApplianceService();
-
+        AppliancePrinter appliancePrinter = new AppliancePrinter();
         //////////////////////////////////////////////////////////////////
 
         Criteria criteriaOven = new Criteria(Oven.class.getSimpleName());
@@ -25,7 +26,7 @@ public class Main {
 
         applianceList = service.find(criteriaOven);
 
-        PrintApplianceInfo.print(applianceList);
+        appliancePrinter.print(applianceList);
 
         //////////////////////////////////////////////////////////////////
 
@@ -35,7 +36,7 @@ public class Main {
 
         applianceList = service.find(criteriaOven);
 
-        PrintApplianceInfo.print(applianceList);
+        appliancePrinter.print(applianceList);
 
         //////////////////////////////////////////////////////////////////
 
@@ -45,7 +46,7 @@ public class Main {
 
 		applianceList = service.find(criteriaOven);
 
-		PrintApplianceInfo.print(applianceList);
+        appliancePrinter.print(applianceList);
 
 		//////////////////////////////////////////////////////////////////
 
@@ -56,7 +57,7 @@ public class Main {
 
         applianceList = service.find(criteriaTabletPC);
 
-        PrintApplianceInfo.print(applianceList);
+        appliancePrinter.print(applianceList);
     }
 
 }

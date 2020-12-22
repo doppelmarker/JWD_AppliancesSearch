@@ -40,4 +40,8 @@ public final class Criteria {
 	public List<String> getKeys() {
 		return new ArrayList<>(criteriaMap.keySet());
 	}
+
+	public List<Object> getValues() {
+		return new ArrayList<>(criteriaMap.values());
+	}
 }
